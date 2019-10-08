@@ -9,6 +9,9 @@ MINIMAL_DOCKERFILE=Dockerfile.minimal
 JAVA_IMAGE=housemap/ci-images:java
 JAVA_DOCKERFILE=Dockerfile.java
 
+ANDROID_IMAGE=housemap/ci-images:android
+ANDROID_DOCKERFILE=Dockerfile.android
+
 SDKS=$(echo {29..22})
 LATEST_SDKS=$(echo {29..27})
 LATEST_PACKAGES=''; for SDK in $LATEST_SDKS; do LATEST_PACKAGES="platforms;android-${SDK} $LATEST_PACKAGES"; done
@@ -28,6 +31,13 @@ build_deploy_minimal() {
 
 build_deploy_java() {
     echo "Building 'java' image…"
+    docker build --tag $JAVA_IMAGE --file $JAVA_DOCKERFILE .
+    docker push $JAVA_IMAGE
+    echo
+}
+
+build_deploy_android() {
+    echo "Building 'android' image…"
     docker build --tag $JAVA_IMAGE --file $JAVA_DOCKERFILE .
     docker push $JAVA_IMAGE
     echo
