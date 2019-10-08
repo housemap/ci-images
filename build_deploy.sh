@@ -26,10 +26,10 @@ build_deploy_minimal() {
     echo
 }
 
-build_deploy_minimal() {
-    echo "Building '' image…"
-    docker build --tag $MINIMAL_IMAGE --file $MINIMAL_DOCKERFILE .
-    docker push $MINIMAL_IMAGE
+build_deploy_java() {
+    echo "Building 'java' image…"
+    docker build --tag $JAVA_IMAGE --file $JAVA_DOCKERFILE .
+    docker push $JAVA_IMAGE
     echo
 }
 
