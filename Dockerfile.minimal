@@ -41,7 +41,7 @@ RUN set -ex \
     && apt-get install -y --no-install-recommends \
        wget fakeroot jq \
        tar gzip zip autoconf automake unzip curl \
-       python3 python3-dev python3-pip \
+       python3 python3-dev python3-pip python3-setuptools \
        g++ gcc build-essential \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
@@ -71,7 +71,7 @@ RUN curl -sS -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-we
     && chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/ecs-cli
 
 RUN set -ex \
-    && pip3 install setuptools wheel awscli boto3 --upgrade
+    && pip3 install setuptools wheel awscli boto3
 
 VOLUME /var/lib/docker
 
