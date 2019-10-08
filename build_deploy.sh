@@ -33,5 +33,5 @@ build_deploy_minimal() {
     echo
 }
 
-build_deploy_minimal
+# build_deploy_minimal
 build_deploy_java
