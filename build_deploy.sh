@@ -3,7 +3,7 @@
 # abort on errors and on unset variables
 set -e -o nounset
 
-MINIMAL_IMAGE=housemap/ci:minimal
+MINIMAL_IMAGE=housemap/ci-images:minimal
 MINIMAL_DOCKERFILE=Dockerfile.minimal
 
 SDKS=$(echo {29..22})
