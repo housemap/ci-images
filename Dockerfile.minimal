@@ -41,6 +41,7 @@ RUN set -ex \
     && chmod 600 ~/.ssh/known_hosts \
     && apt-get install -y --no-install-recommends \
        wget fakeroot jq \
+       tar gzip zip autoconf automake unzip curl \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
