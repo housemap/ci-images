@@ -4,13 +4,13 @@
 set -e -o nounset
 
 MINIMAL_IMAGE=housemap/ci-images:minimal
-MINIMAL_DOCKERFILE=Dockerfile.minimal
+MINIMAL_DOCKERFILE=minimal.Dockerfile
 
 JAVA_IMAGE=housemap/ci-images:java
-JAVA_DOCKERFILE=Dockerfile.java
+JAVA_DOCKERFILE=java.Dockerfile
 
 ANDROID_IMAGE=housemap/ci-images:android
-ANDROID_DOCKERFILE=Dockerfile.android
+ANDROID_DOCKERFILE=android.Dockerfile
 
 SDKS=$(echo {29..22})
 LATEST_SDKS=$(echo {29..27})
@@ -43,5 +43,6 @@ build_deploy_android() {
     echo
 }
 
-# build_deploy_minimal
+build_deploy_minimal
 build_deploy_java
+build_deploy_android
