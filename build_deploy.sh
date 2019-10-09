@@ -43,6 +43,6 @@ build_deploy_android() {
     echo
 }
 
-build_deploy_minimal
+# build_deploy_minimal
 build_deploy_java
 build_deploy_android
