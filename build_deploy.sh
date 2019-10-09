@@ -38,8 +38,8 @@ build_deploy_java() {
 
 build_deploy_android() {
     echo "Building 'android' image…"
-    docker build --tag $JAVA_IMAGE --file $JAVA_DOCKERFILE .
-    docker push $JAVA_IMAGE
+    docker build --tag $ANDROID_IMAGE --file $ANDROID_DOCKERFILE .
+    docker push $ANDROID_IMAGE
     echo
 }
 
