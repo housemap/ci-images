@@ -54,6 +54,6 @@ build_deploy_node() {
 }
 
 # build_deploy_minimal
-build_deploy_java
+# build_deploy_java
 build_deploy_android
 build_deploy_node
