@@ -2,7 +2,7 @@ FROM housemap/ci-images:java
 
 #****************      ANDROID     ****************************************************
 # Copy install tools
-COPY tools /opt/tools
+COPY tools/* /opt/tools
 
 ENV ANDROID_HOME="/usr/local/android-sdk-linux" \
     ANDROID_SDK_MANAGER_VER="4333796" \
@@ -20,7 +20,7 @@ RUN set -ex \
     && wget "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_MANAGER_VER}.zip" -O /tmp/android-sdkmanager.zip \
     && echo "${ANDROID_SDK_MANAGER_SHA256} /tmp/android-sdkmanager.zip" | sha256sum -c - \
     && mkdir -p ${ANDROID_HOME} \
-    && unzip /tmp/android-sdkmanager.zip -d ${ANDROID_HOME} \
+    && unzip --qq /tmp/android-sdkmanager.zip -d ${ANDROID_HOME} \
     && chown -R root.root ${ANDROID_HOME} \
     && ln -s ${ANDROID_HOME}/tools/android /usr/bin/android \
     # Install Android
