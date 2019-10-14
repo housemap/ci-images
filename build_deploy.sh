@@ -12,6 +12,9 @@ JAVA_DOCKERFILE=java.Dockerfile
 ANDROID_IMAGE=housemap/ci-images:android
 ANDROID_DOCKERFILE=android.Dockerfile
 
+NODE_IMAGE=housemap/ci-images:node
+NODE_DOCKERFILE=node.Dockerfile
+
 SDKS=$(echo {29..22})
 LATEST_SDKS=$(echo {29..27})
 LATEST_PACKAGES=''; for SDK in $LATEST_SDKS; do LATEST_PACKAGES="platforms;android-${SDK} $LATEST_PACKAGES"; done
@@ -43,6 +46,14 @@ build_deploy_android() {
     echo
 }
 
+build_deploy_node() {
+    echo "Building 'node' image…"
+    docker build --tag $NODE_IMAGE --file $NODE_DOCKERFILE .
+    docker push $NODE_IMAGE
+    echo
+}
+
 # build_deploy_minimal
 build_deploy_java
 build_deploy_android
+build_deploy_node
