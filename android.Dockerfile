@@ -16,7 +16,7 @@ ENV PATH="${PATH}:/opt/tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${A
 
 RUN set -ex \
     # Install Android SDK manager
-    && wget "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_MANAGER_VER}.zip" -O /tmp/android-sdkmanager.zip \
+    && wget –-quiet "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_MANAGER_VER}.zip" -O /tmp/android-sdkmanager.zip \
     && echo "${ANDROID_SDK_MANAGER_SHA256} /tmp/android-sdkmanager.zip" | sha256sum -c - \
     && mkdir -p ${ANDROID_HOME} \
     && unzip --qq /tmp/android-sdkmanager.zip -d ${ANDROID_HOME} \
