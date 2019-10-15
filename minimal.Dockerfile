@@ -47,7 +47,6 @@ RUN set -ex \
        libcurl4-openssl-dev libssl-dev \
        libreadline-dev zlib1g-dev \
        g++ gcc build-essential \
-    && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
 # Install Docker
