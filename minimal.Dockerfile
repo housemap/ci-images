@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
 ENV RUBY_VERSION="2.6.4" \
     PYTHON_VERSION="3.7.4" \
     PHP_VERSION=7.3.9 \
@@ -43,6 +45,7 @@ RUN set -ex \
        tar gzip zip autoconf automake unzip curl \
        python3 python3-dev python3-pip python3-setuptools \
        libcurl4-openssl-dev libssl-dev \
+       libreadline-dev zlib1g-dev \
        g++ gcc build-essential \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean

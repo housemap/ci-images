@@ -31,4 +31,37 @@ RUN set -ex \
     && apt-get clean
 #****************     END ANDROID     ****************************************************
 
+#****************      NODEJS     ****************************************************
+
+ ENV N_SRC_DIR="$SRC_DIR/n"
+
+ RUN git clone https://github.com/tj/n $N_SRC_DIR \
+     && cd $N_SRC_DIR && make install \
+     && n $NODE_8_VERSION && npm install --save-dev -g grunt && npm install --save-dev -g grunt-cli && npm install --save-dev -g webpack \
+     && n $NODE_VERSION && npm install --save-dev -g grunt && npm install --save-dev -g grunt-cli && npm install --save-dev -g webpack \
+     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+     && apt-get update && apt-get install -y --no-install-recommends yarn \
+     && cd / && rm -rf $N_SRC_DIR;
+
+#****************      END NODEJS     ****************************************************
+
+#**************** RUBY *********************************************************
+ENV RBENV_SRC_DIR="/usr/local/rbenv"
+
+ENV PATH="/root/.rbenv/shims:$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
+    RUBY_BUILD_SRC_DIR="$RBENV_SRC_DIR/plugins/ruby-build"
+
+RUN set -ex \
+    && git clone https://github.com/rbenv/rbenv.git $RBENV_SRC_DIR \
+    && mkdir -p $RBENV_SRC_DIR/plugins \
+    && git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_SRC_DIR \
+    && sh $RUBY_BUILD_SRC_DIR/install.sh \
+    && rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION
+
+#**************** END RUBY *****************************************************
+
+RUN gem install bundler
+RUN curl -sL firebase.tools | bash
+
 ENTRYPOINT ["dockerd-entrypoint.sh"]
