@@ -62,6 +62,6 @@ RUN set -ex \
 #**************** END RUBY *****************************************************
 
 RUN gem install bundler
-RUN curl -sL firebase.tools | bash
+RUN sudo curl -sL firebase.tools | bash
 
 ENTRYPOINT ["dockerd-entrypoint.sh"]
