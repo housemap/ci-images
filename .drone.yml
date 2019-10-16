@@ -3,26 +3,38 @@ type: docker
 name: dind
 
 steps:
-- name: build
-  image: docker:dind
-  environment:
-    DOCKER_USERNAME:
+- name: ci_images_minimal
+  image: plugins/docker
+  settings:
+    username:
       from_secret: docker_username
-    DOCKER_PASSWORD:
-      from_secret: docker_password
-  volumes:
-      - name: docker_sock
-        path: /var/run/docker.sock
-  commands:
-  - DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=$DOCKER_PASSWORD sh build_deploy.sh
-  when:
-    branch:
-    - master
+    password:
+      from_secret: docker_passwor
+    repo: housemap/ci-images
+    tags: minimal
 
-volumes:
-  - name: docker_sock
-    host:
-      path: /var/run/docker.sock
+
+# steps:
+# - name: build
+#   image: docker:dind
+#   environment:
+#     DOCKER_USERNAME:
+#       from_secret: docker_username
+#     DOCKER_PASSWORD:
+#       from_secret: docker_password
+#   volumes:
+#       - name: docker_sock
+#         path: /var/run/docker.sock
+#   commands:
+#   - DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=$DOCKER_PASSWORD sh build_deploy.sh
+#   when:
+#     branch:
+#     - master
+
+# volumes:
+#   - name: docker_sock
+#     host:
+#       path: /var/run/docker.sock
 
 # services:
 #   - name: docker
