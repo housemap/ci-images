@@ -24,9 +24,9 @@ ENV JAVA_11_HOME="/opt/jvm/openjdk-11" \
     GRADLE_DOWNLOADS_SHA256="7bdbad1e4f54f13c8a78abc00c26d44dd8709d4aedb704d913fb1bb78ac025dc 5.4.1\n336b6898b491f6334502d8074a6b8c2d73ed83b92123106bd4bf837f04111043 4.10.3"
 
 ENV JDK_DOWNLOAD_TAR="openjdk-${JDK_VERSION}_linux-x64_bin.tar.gz" \
-    JAVA_HOME="$JAVA_11_HOME" \
-    JDK_HOME="$JDK_11_HOME" \
-    JRE_HOME="$JRE_11_HOME"
+    JAVA_HOME="$JAVA_8_HOME" \
+    JDK_HOME="$JDK_8_HOME" \
+    JRE_HOME="$JRE_8_HOME"
 
 RUN set -ex \
     && apt-get update \
