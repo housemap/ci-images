@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: docker
+name: docker_build_images
 
 steps:
 - name: ci_images_minimal
@@ -10,35 +10,40 @@ steps:
     username:
       from_secret: docker_username
     password:
-      from_secret: docker_passwor
+      from_secret: docker_password
     repo: housemap/ci-images
     tags: minimal
 
+- name: ci_images_java
+  image: plugins/docker
+  settings:
+    dockerfile: java.Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: housemap/ci-images
+    tags: java
 
-# steps:
-# - name: build
-#   image: docker:dind
-#   environment:
-#     DOCKER_USERNAME:
-#       from_secret: docker_username
-#     DOCKER_PASSWORD:
-#       from_secret: docker_password
-#   volumes:
-#       - name: docker_sock
-#         path: /var/run/docker.sock
-#   commands:
-#   - DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=$DOCKER_PASSWORD sh build_deploy.sh
-#   when:
-#     branch:
-#     - master
+- name: ci_images_android
+  image: plugins/docker
+  settings:
+    dockerfile: android.Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: housemap/ci-images
+    tags: android
 
-# volumes:
-#   - name: docker_sock
-#     host:
-#       path: /var/run/docker.sock
 
-# services:
-#   - name: docker
-#     image: docker:dind
-#     privileged: true
-#     command: [ --storage-driver=overlay2]
+- name: ci_images_node
+  image: plugins/docker
+  settings:
+    dockerfile: node.Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: housemap/ci-images
+    tags: node
