@@ -11,8 +11,7 @@ steps:
     DOCKER_PASSWORD:
       from_secret: docker_password
   commands:
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - ./build_deploy.sh
+  - DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=DOCKER_PASSWORD ./build_deploy.sh
   when:
     branch:
     - master
