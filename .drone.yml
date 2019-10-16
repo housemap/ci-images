@@ -3,7 +3,7 @@ type: docker
 name: docker_build_images
 
 steps:
-- name: ci_images_minimal
+- name: ci_image_minimal
   image: plugins/docker
   settings:
     dockerfile: minimal.Dockerfile
@@ -14,7 +14,7 @@ steps:
     repo: housemap/ci-images
     tags: minimal
 
-- name: ci_images_java
+- name: ci_image_java
   image: plugins/docker
   settings:
     dockerfile: java.Dockerfile
@@ -25,7 +25,7 @@ steps:
     repo: housemap/ci-images
     tags: java
 
-- name: ci_images_android
+- name: ci_image_android
   image: plugins/docker
   settings:
     dockerfile: android.Dockerfile
@@ -37,7 +37,7 @@ steps:
     tags: android
 
 
-- name: ci_images_node
+- name: ci_image_node
   image: plugins/docker
   settings:
     dockerfile: node.Dockerfile
