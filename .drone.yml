@@ -15,3 +15,10 @@ steps:
   when:
     branch:
     - master
+
+services:
+  docker:
+    image: docker:dind
+    environment:
+    privileged: true
+    command: [ --storage-driver=overlay2]
