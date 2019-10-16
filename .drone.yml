@@ -1,0 +1,18 @@
+kind: pipeline
+type: docker
+name: dind
+
+steps:
+- name: build
+  image: docker:dind
+  environment:
+    DOCKER_USERNAME:
+      from_secret: docker_username
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+  commands:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - ./build_deploy.sh
+  when:
+    branch:
+    - master
