@@ -17,7 +17,7 @@ steps:
     - master
 
 services:
-  - name: docekr
+  - name: docker
     image: docker:dind
     privileged: true
     command: [ --storage-driver=overlay2]
